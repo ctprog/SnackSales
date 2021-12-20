@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: rgb(238, 239, 240);
+        }
+
+        .form {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+
+        .form .form-signin-heading {
+            margin-bottom: 10px;
+        }
+
+        .form .form-control {
+            position: relative;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .form .form-control:focus {
+            z-index: 2;
+        }
+
+        .form input[type="text"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        #msg{
+            color: #b14442;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3"></div>
+        </div>
+        <form id="form" class="form">
+            <h2 class="form-signin-heading">管理员登录</h2>
+            <label id="msg" class="control-label help-block"></label>
+            <label for="inputEmail" class="sr-only">admin id</label>
+            <input name="aId" type="text" id="inputEmail" class="form-control" placeholder="Admin id" required autofocus>
+            <label class="control-label"></label>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input name="aPassword" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <label class="control-label" ></label>
+            <button id="login" class="btn btn-lg btn-primary btn-block" type="button">登录</button>
+        </form>
+
+    </div>
+</body>
+<script>
+    function getContextPath(){
+        let pathName = document.location.pathname;
+        let index = pathName.substr(1).indexOf("/");
+        let result = pathName.substr(0,index+1);
+        return result;
+    }
+    let path = getContextPath();
+    $("#login").click(function () {
+        $("#msg").text("");
+        $.ajax({
+            url:path+"/adminCheck",
+            type:"POST",
+            data:$("#form").serialize(),
+            async:false,
+            success:function (result) {
+                if (result.code == 200){
+                    $("#msg").text(result.extend.error);
+                } else if (result.code == 100){
+                    window.location.href = path+"/adminLogin";
+                }
+            }
+        })
+    })
+</script>
+</html>
