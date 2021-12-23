@@ -14,7 +14,6 @@ import java.util.List;
 
 public class MBGTest {
 
-
     public void test() throws IOException, XMLParserException, InvalidConfigurationException, SQLException, InterruptedException {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;

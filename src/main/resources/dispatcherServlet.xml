@@ -37,6 +37,7 @@
             <mvc:mapping path="/shoppingCar/**"/>
             <mvc:mapping path="/userCenter/**"/>
             <mvc:mapping path="/order/**"/>
+            <mvc:mapping path="/message/**"/>
             <bean class="com.snack.interceptor.UserInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -44,6 +45,10 @@
     <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
     <mvc:view-controller path="/adminLogin" view-name="adminLogin"></mvc:view-controller>
     <mvc:view-controller path="/register" view-name="register"></mvc:view-controller>
+    <mvc:view-controller path="/shoppingCar" view-name="shoppingCar"></mvc:view-controller>
+    <mvc:view-controller path="/order" view-name="order"></mvc:view-controller>
+    <mvc:view-controller path="/userCenter" view-name="userCenter"></mvc:view-controller>
+
 
     <mvc:default-servlet-handler/>
 

@@ -364,6 +364,136 @@ public class OrderExample {
             addCriterion("u_id not between", value1, value2, "uId");
             return (Criteria) this;
         }
+
+        public Criteria andOStateIsNull() {
+            addCriterion("o_state is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateIsNotNull() {
+            addCriterion("o_state is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateEqualTo(String value) {
+            addCriterion("o_state =", value, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateNotEqualTo(String value) {
+            addCriterion("o_state <>", value, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateGreaterThan(String value) {
+            addCriterion("o_state >", value, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateGreaterThanOrEqualTo(String value) {
+            addCriterion("o_state >=", value, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateLessThan(String value) {
+            addCriterion("o_state <", value, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateLessThanOrEqualTo(String value) {
+            addCriterion("o_state <=", value, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateLike(String value) {
+            addCriterion("o_state like", value, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateNotLike(String value) {
+            addCriterion("o_state not like", value, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateIn(List<String> values) {
+            addCriterion("o_state in", values, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateNotIn(List<String> values) {
+            addCriterion("o_state not in", values, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateBetween(String value1, String value2) {
+            addCriterion("o_state between", value1, value2, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andOStateNotBetween(String value1, String value2) {
+            addCriterion("o_state not between", value1, value2, "oState");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdIsNull() {
+            addCriterion("m_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdIsNotNull() {
+            addCriterion("m_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdEqualTo(Integer value) {
+            addCriterion("m_id =", value, "mId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdNotEqualTo(Integer value) {
+            addCriterion("m_id <>", value, "mId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdGreaterThan(Integer value) {
+            addCriterion("m_id >", value, "mId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("m_id >=", value, "mId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdLessThan(Integer value) {
+            addCriterion("m_id <", value, "mId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdLessThanOrEqualTo(Integer value) {
+            addCriterion("m_id <=", value, "mId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdIn(List<Integer> values) {
+            addCriterion("m_id in", values, "mId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdNotIn(List<Integer> values) {
+            addCriterion("m_id not in", values, "mId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdBetween(Integer value1, Integer value2) {
+            addCriterion("m_id between", value1, value2, "mId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("m_id not between", value1, value2, "mId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

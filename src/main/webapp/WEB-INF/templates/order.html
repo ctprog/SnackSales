@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-outline-info btn-md btn-block btn-info" onclick="index_btn()">
+                    返回继续购物
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-block btn-outline-info btn-info" onclick="userCenter_btn()">
+                    个人中心
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="panel panel-default">
+                <h4 class="panel-heading clearfix">
+                    <div class="col-xs-6 col-sm-6 col-md-6">订单信息</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">实付金额</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">订单状态</div>
+                </h4>
+                <div class="panel-body" id="order_body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/static/js/order.js}"></script>
+</body>
+
+</html>

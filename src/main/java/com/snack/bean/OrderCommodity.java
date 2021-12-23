@@ -13,6 +13,16 @@ public class OrderCommodity {
 
     private Integer cNumber;
 
+    private Commodity commodity;
+
+    public Commodity getCommodity() {
+        return commodity;
+    }
+
+    public void setCommodity(Commodity commodity) {
+        this.commodity = commodity;
+    }
+
     public String getoId() {
         return oId;
     }

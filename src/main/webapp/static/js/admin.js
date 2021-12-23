@@ -28,12 +28,90 @@ $("#left-nav li").click(function () {
             break;
     }
 });
+$(function (){
+    left_order();
+})
 // =============================================
 //左导航栏订单管理
 function left_order() {
-
+    getAllOrder();
 }
 
+function getAllOrder(){
+    $.ajax({
+        url:path+"/order/allOrder",
+        type:'get',
+        success:function (result){
+            build_orders(result);
+        }
+    })
+}
+
+
+function build_orders(result){
+    $('#success-order_body').empty();
+    $('#wait-order_body').empty();
+    let orders = result.extend.orders
+    $.each(orders,function (index,item){
+        let orderCom = item.orderCom;
+        let time = getMyDate(item.oStartTime);
+        let msg = item.message.mName+"——"+item.message.mAddress+"——"+item.message.mPhone
+        let oId = $('<div class="col-xs-3 col-sm-3 col-md-3"></div>').text('订单号：'+item.oId);
+        let startTime = $('<div class="col-xs-3 col-sm-3 col-md-3"></div>').text('提交时间：'+time);
+        let messsage = $('<div class="col-xs-6 col-sm-6 col-md-6"></div>').text('收货信息：'+msg);
+        let orderHead = $('<div class="panel-heading clearfix"></div>').append(oId).append(startTime).append(messsage);
+        let orderBody = $('<div class="panel-body orderBody"></div>');
+        let coms = $('<div class="col-xs-6 col-sm-6 col-md-6"></div>');
+        $.each(orderCom,function (index,oneOrderCom){
+            let com = oneOrderCom.commodity;
+            let imgPath =path +"/static/image/"+ com.imgs[0].iName;
+            let img = $('<div class="col-xs-3 col-sm-3 col-md-3"></div>').append($('<a href="javascript:;" class="thumbnail"></a>').append($('<img/>').attr('src',imgPath)));
+            let cName = $('<div class="col-xs-9 col-sm-9 col-md-9"></div>').text(com.cName);
+            $('<div class="row"></div>').append(img).append(cName).appendTo(coms);
+        })
+        coms.appendTo(orderBody);
+        $('<div class="col-xs-3 col-sm-3 col-md-3"></div>').append($('<h4></h4>').text('￥'+item.allPrice)).appendTo(orderBody);
+        $('<div class="col-xs-2 col-sm-2 col-md-2"></div>').append($('<h4></h4>').text(item.oState)).appendTo(orderBody);
+        if (item.oState=='未处理'){
+            $('<div class="col-xs-1 col-sm-1 col-md-1"></div>').append($('<a href="javascript:;" class="deliver"></a>').text('发货').attr('oId',item.oId)).appendTo(orderBody);
+            $('<div class="panel panel-default"></div>').append(orderHead).append(orderBody).appendTo('#wait-order_body');
+        }else {
+            $('<div class="panel panel-default"></div>').append(orderHead).append(orderBody).appendTo('#success-order_body');
+        }
+
+    })
+}
+
+function getMyDate(str){
+    let oDate = new Date(str),
+        oYear = oDate.getFullYear(),
+        oMonth = oDate.getMonth()+1,
+        oDay = oDate.getDate(),
+        oHour = oDate.getHours(),
+        oMin = oDate.getMinutes(),
+        oSen = oDate.getSeconds(),
+        oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +' '+ getzf(oHour) +':'+ getzf(oMin) +':'+getzf(oSen);//最后拼接时间
+    return oTime;
+};
+//补0操作
+function getzf(num){
+    if(parseInt(num) < 10){
+        num = '0'+num;
+    }
+    return num;
+}
+
+$(document).on('click','.deliver',function (){
+    let oId = $(this).attr('oId');
+    $.ajax({
+        url:path + '/order/deliver/'+oId,
+        type:'put',
+        success:function (result){
+            alert("发货成功！");
+            getAllOrder();
+        }
+    })
+})
 // ============================================
 //左导航栏分类管理
 function left_type() {

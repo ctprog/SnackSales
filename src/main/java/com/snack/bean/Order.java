@@ -1,6 +1,8 @@
 package com.snack.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     private String oId;
@@ -11,6 +13,39 @@ public class Order {
 
     private String uId;
 
+    private String oState;
+
+    private Integer mId;
+
+    private Message message;
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    private BigDecimal allPrice;
+
+    private List<OrderCommodity> orderCom;
+
+    public List<OrderCommodity> getOrderCom() {
+        return orderCom;
+    }
+
+    public void setOrderCom(List<OrderCommodity> orderCom) {
+        this.orderCom = orderCom;
+    }
+
+    public BigDecimal getAllPrice() {
+        return allPrice;
+    }
+
+    public void setAllPrice(BigDecimal allPrice) {
+        this.allPrice = allPrice;
+    }
     public String getoId() {
         return oId;
     }
@@ -41,5 +76,21 @@ public class Order {
 
     public void setuId(String uId) {
         this.uId = uId == null ? null : uId.trim();
+    }
+
+    public String getoState() {
+        return oState;
+    }
+
+    public void setoState(String oState) {
+        this.oState = oState == null ? null : oState.trim();
+    }
+
+    public Integer getmId() {
+        return mId;
+    }
+
+    public void setmId(Integer mId) {
+        this.mId = mId;
     }
 }

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-outline-info btn-md btn-block btn-info" onclick="index_btn()">
+                    返回继续购物
+                </button>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form id="userUpdate">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3"></div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <h5>当前头像：</h5>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1" id="uHead">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3"></div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <h5>用户名：</h5>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="uName"
+                                   id="uName">
+                        </div>
+                    </div>
+                </div>
+                <label></label>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3"></div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <h5>性别：</h5>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+                        <div class="input-group">
+                            <input type="radio" name="uGender" value="男">男
+                            <input type="radio" name="uGender" value="女">女
+                        </div>
+                    </div>
+                </div>
+                <label></label>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3"></div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <h5>密码：</h5>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" aria-describedby="basic-addon1" id="uPassword"
+                                   name="uPassword">
+                        </div>
+                    </div>
+                </div>
+                <label></label>
+                <div class="row">
+                    <div class="col-xs-5 col-sm-5 col-md-5"></div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+                        <button type="button" class="btn btn-info btn-block" id="updateUser">修改</button>
+                    </div>
+                </div>
+            </form>
+            <label></label>
+            <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2"></div>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                    <h4>我的收货地址</h4>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <button type="button" class="btn btn-primary btn-block" id="add-address">新增地址</button>
+                </div>
+            </div>
+            <label></label>
+            <div class="row">
+                <div class="col-xs-1 col-sm-1 col-md-1"></div>
+                <div class="col-xs-9 col-sm-9 col-md-9">
+                    <table class="table table-bordered" id="address-table">
+                        <thead>
+                        <tr>
+                            <th>收货人</th>
+                            <th>详细地址</th>
+                            <th>手机/电话</th>
+                            <th>操作</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="add-Address-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增收货地址</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="mAddress_add_input" class="col-sm-2 control-label">详细地址</label>
+                        <div class="col-sm-10">
+                            <input type="textarea" name="mAddress" class="form-control" id="mAddress_add_input"
+                                   placeholder="请输入详细地址">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mName_add_input" class="col-sm-2 control-label">收货人</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mName" class="form-control" id="mName_add_input"
+                                   placeholder="收货人姓名">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mPhone_add_input" class="col-sm-2 control-label">手机号码</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="mPhone" class="form-control" id="mPhone_add_input"
+                                   placeholder="手机号码">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="address-save-bte">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="update-Address-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改收货地址</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="mAddress_update_input" class="col-sm-2 control-label">详细地址</label>
+                        <div class="col-sm-10">
+                            <input type="textarea" name="mAddress" class="form-control" id="mAddress_update_input"
+                                   placeholder="请输入详细地址">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mName_update_input" class="col-sm-2 control-label">收货人</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mName" class="form-control" id="mName_update_input"
+                                   placeholder="收货人姓名">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mPhone_update_input" class="col-sm-2 control-label">手机号码</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="mPhone" class="form-control" id="mPhone_update_input"
+                                   placeholder="手机号码">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="address-update-btn">修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/js/userCenter.js}"></script>
+</body>
+
+</html>

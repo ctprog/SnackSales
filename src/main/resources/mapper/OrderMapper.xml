@@ -6,6 +6,8 @@
     <result column="o_start_time" jdbcType="TIMESTAMP" property="oStartTime" />
     <result column="o_end_time" jdbcType="TIMESTAMP" property="oEndTime" />
     <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="o_state" jdbcType="VARCHAR" property="oState" />
+    <result column="m_id" jdbcType="INTEGER" property="mId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    o_id, o_start_time, o_end_time, u_id
+    o_id, o_start_time, o_end_time, u_id, o_state, m_id
   </sql>
   <select id="selectByExample" parameterType="com.snack.bean.OrderExample" resultMap="BaseResultMap">
     select
@@ -100,9 +102,9 @@
   </delete>
   <insert id="insert" parameterType="com.snack.bean.Order">
     insert into tb_order (o_id, o_start_time, o_end_time, 
-      u_id)
+      u_id, o_state, m_id)
     values (#{oId,jdbcType=VARCHAR}, #{oStartTime,jdbcType=TIMESTAMP}, #{oEndTime,jdbcType=TIMESTAMP}, 
-      #{uId,jdbcType=VARCHAR})
+      #{uId,jdbcType=VARCHAR}, #{oState,jdbcType=VARCHAR}, #{mId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.bean.Order">
     insert into tb_order
@@ -119,6 +121,12 @@
       <if test="uId != null">
         u_id,
       </if>
+      <if test="oState != null">
+        o_state,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="oId != null">
@@ -132,6 +140,12 @@
       </if>
       <if test="uId != null">
         #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="oState != null">
+        #{oState,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -156,6 +170,12 @@
       <if test="record.uId != null">
         u_id = #{record.uId,jdbcType=VARCHAR},
       </if>
+      <if test="record.oState != null">
+        o_state = #{record.oState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mId != null">
+        m_id = #{record.mId,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +186,9 @@
     set o_id = #{record.oId,jdbcType=VARCHAR},
       o_start_time = #{record.oStartTime,jdbcType=TIMESTAMP},
       o_end_time = #{record.oEndTime,jdbcType=TIMESTAMP},
-      u_id = #{record.uId,jdbcType=VARCHAR}
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      o_state = #{record.oState,jdbcType=VARCHAR},
+      m_id = #{record.mId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +205,12 @@
       <if test="uId != null">
         u_id = #{uId,jdbcType=VARCHAR},
       </if>
+      <if test="oState != null">
+        o_state = #{oState,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
     </set>
     where o_id = #{oId,jdbcType=VARCHAR}
   </update>
@@ -190,7 +218,9 @@
     update tb_order
     set o_start_time = #{oStartTime,jdbcType=TIMESTAMP},
       o_end_time = #{oEndTime,jdbcType=TIMESTAMP},
-      u_id = #{uId,jdbcType=VARCHAR}
+      u_id = #{uId,jdbcType=VARCHAR},
+      o_state = #{oState,jdbcType=VARCHAR},
+      m_id = #{mId,jdbcType=INTEGER}
     where o_id = #{oId,jdbcType=VARCHAR}
   </update>
 </mapper>

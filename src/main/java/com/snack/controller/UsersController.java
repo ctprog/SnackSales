@@ -3,14 +3,13 @@ package com.snack.controller;
 import com.snack.bean.Msg;
 import com.snack.bean.User;
 import com.snack.service.ImgService;
+import com.snack.service.ShoppingCarService;
 import com.snack.service.UsersService;
 import com.snack.utils.ImgUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
@@ -20,6 +19,9 @@ import java.io.File;
 
 @Controller
 public class UsersController {
+
+    @Autowired
+    private ShoppingCarService shoppingCarService;
 
     @Autowired
     private UsersService usersService;
@@ -80,6 +82,28 @@ public class UsersController {
         String imagePath = servletContext.getRealPath("static") + File.separator + "image";
         User user1 = imgService.addUserHead(user, img, imagePath);
         usersService.saveUser(user1);
+        shoppingCarService.addShoppingCar(user.getuId());
+        return Msg.success();
+    }
+
+    @ResponseBody
+    @PutMapping("/user/update")
+    public Msg updateUser(User user,HttpSession session){
+        User user1 = (User) session.getAttribute("user");
+        user.setuId(user1.getuId());
+        user.setuHead(user1.getuHead());
+        user.setmId(user1.getmId());
+        usersService.updateUser(user);
+        session.removeAttribute("user");
+        return Msg.success();
+    }
+
+    @ResponseBody
+    @PutMapping("/user/update/{mId}")
+    public Msg updateUserMId(@PathVariable("mId") Integer mId, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        user.setmId(mId);
+        usersService.updateUser(user);
         return Msg.success();
     }
 }

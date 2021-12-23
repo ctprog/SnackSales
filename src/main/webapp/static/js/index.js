@@ -5,6 +5,7 @@ function getContextPath() {
     return result;
 }
 let path = getContextPath();
+let cId = 0;
 //进入首页
 $(function(){
     build_nav()
@@ -123,7 +124,8 @@ $("#search_btn").click(function(){
 })
 //调出商品详情模态框
 function com_part_modal(obj){
-    let cId = $(obj).attr("cId");
+    cId = $(obj).attr("cId");
+
     $.ajax({
         url:path+"/commodityOne/"+cId,
         type:"GET",
@@ -154,6 +156,21 @@ function build_com_part(result) {
     $("<p></p>").text(com.cName).appendTo("#com_part");
     $("<p></p>").append($("<a class='btn btn-danger btn-lg' role='button'></a>").text('￥'+com.cPrice+'元')).appendTo("#com_part");
 };
+//加入购物车
+$(".saveto-shoppingCar").click(function (){
+    $.ajax({
+        url:path+'/shoppingCar/'+cId,
+        type:'post',
+        success:function (result){
+            if(result.code!=100){
+                window.location.href=path+"/register";
+            }else{
+                alert("已加入购物车！");
+                $("#com-part-modal").modal('hide');
+            }
+        }
+    })
+})
 //退出
 $("#quit").click(function (){
     if (confirm("确定要退出登录吗？")){

@@ -32,4 +32,9 @@ public class UsersServiceImpl implements UsersService {
     public void saveUser(User user) {
         userMapper.insert(user);
     }
+
+    @Override
+    public void updateUser(User user) {
+        userMapper.updateByPrimaryKey(user);
+    }
 }

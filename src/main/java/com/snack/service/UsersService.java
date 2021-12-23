@@ -8,4 +8,6 @@ public interface UsersService {
     public User getUserById(String getuId);
 
     public void saveUser(User user);
+
+    void updateUser(User user);
 }

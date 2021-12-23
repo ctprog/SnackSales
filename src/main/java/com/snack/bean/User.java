@@ -19,12 +19,14 @@ public class User {
 
     private String uHead;
 
+    private Integer mId;
+
     public String getuId() {
         return uId;
     }
 
     public void setuId(String uId) {
-        this.uId = uId;
+        this.uId = uId == null ? null : uId.trim();
     }
 
     public String getuName() {
@@ -65,5 +67,13 @@ public class User {
 
     public void setuHead(String uHead) {
         this.uHead = uHead == null ? null : uHead.trim();
+    }
+
+    public Integer getmId() {
+        return mId;
+    }
+
+    public void setmId(Integer mId) {
+        this.mId = mId;
     }
 }
