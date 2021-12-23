@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--设置网页图标-->
+    <!--	<link rel="icon" href="images/min-logo.ico" type="images/x-ico" />-->
+    <title>购物车</title>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/static/css/carts.css}">
+    <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+
+            <button type="button" class="btn btn-outline-info btn-md btn-block btn-info" onclick="index_btn()">
+                返回继续购物
+            </button>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-block btn-outline-info btn-info" onclick="order_btn()">
+                我的订单
+            </button>
+        </div>
+    </div>
+    <section class="cartMain">
+        <div class="cartMain_hd">
+            <ul class="order_lists cartTop">
+                <div class="col-lg-1 col-md-1 col-sm-1">
+                    <li class="list_chk">
+                        <input type="checkbox" id="check_all">
+                        全选
+                        <!--所有商品全选-->
+                    </li>
+                </div>
+                <div class="col-lg-5 col-md-5">
+                    <li class="list_con"><b>商品信息</b></li>
+                </div>
+                <div class="col-lg-1 col-md-1">
+                    <li class="list_price"><b>单价</b></li>
+                </div>
+
+                <div class="col-lg-2 col-md-2">
+                    <li class="list_amount"><b>数量</b></li>
+                </div>
+                <div class="col-lg-1 col-md-1">
+                    <li class="list_sum"><b>金额</b></li>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <li class="list_op"><b>操作</b></li>
+                </div>
+            </ul>
+        </div>
+		<div id="comMain">
+		</div>
+    </section>
+
+    <!--底部-->
+    <div class="row" style="background: #e5e5e5;margin: 0 0;">
+        <div class="bar-right">
+            <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
+            <div class="totalMoney">共计:<strong class="total_text">0.00</strong></div>
+            <div class="calBtn" id="calBtn"><a href="javascript:;">结算</a></div>
+        </div>
+    </div>
+
+</div>
+<script th:src="@{/static/js/carts.js}"></script>
+
+</body>
+
+</html>
