@@ -1,5 +1,6 @@
 package com.snack.bean;
 
+
 public class Message {
     private Integer mId;
 

@@ -30,16 +30,13 @@ function user_message(){
 }
 //修改用户信息
 $('#updateUser').click(function (){
-    let formData = new FormData($("#userUpdate")[0]);
     $.ajax({
-        type: "POST",
-        url: path+"/message/address",
-        data: formData,
-        contentType: false,
-        processData: false,
+        type: "put",
+        url: path+"/user/update",
+        data: $('#userUpdate').serialize(),
         success:function (result){
             alert("修改成功！");
-            window.location.href=path+'/adminLogin';
+            user_message();
         }
     })
 })
@@ -103,26 +100,6 @@ function build_address(result){
     })
 }
 
-//前端信息校验
-function validate_add_from(){
-    let cName = $("#cName_add_input").val();
-    if (cName == ""||$.trim(cName).length==0){
-        show_validate_msg("#cName_add_input","error","商品名称不能为空！");
-        return false;
-    } else {
-        show_validate_msg("#cName_add_input","success","");
-    }
-
-    let cPrice = $("#cPrice_add_input").val();
-    let regcPrice = /(^0\.[1-9]\d?$)|(^0\.\d[1-9]?$)|(^[1-9]\d{0,7}(\.\d{0,2})?$)/
-    if (!regcPrice.test(cPrice)){
-        show_validate_msg("#cPrice_add_input","error","价格格式不合法！");
-        return false;
-    } else {
-        show_validate_msg("#cPrice_add_input","success","");
-    }
-    return true;
-}
 //校验信息显示
 function show_validate_msg(ele,status,msg){
     $(ele).parent().removeClass("has-success has-error");

@@ -50,7 +50,7 @@ function build_shopping_car(result){
 $(document).on("click",".delBtn",function () {
     if (confirm("确定要将此商品移出购物车吗？")){
         $.ajax({
-            url:path+"/shoppingCar"+$(this).attr('comId'),
+            url:path+"/shoppingCar/"+$(this).attr('comId'),
             type: 'delete',
             success:function (result){
                 alert('移出成功！');

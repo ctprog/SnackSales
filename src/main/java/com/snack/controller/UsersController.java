@@ -93,8 +93,10 @@ public class UsersController {
         user.setuId(user1.getuId());
         user.setuHead(user1.getuHead());
         user.setmId(user1.getmId());
+        user.setuPassword(user1.getuPassword());
         usersService.updateUser(user);
-        session.removeAttribute("user");
+        User userById = usersService.getUserById(user1.getuId());
+        session.setAttribute("user",userById);
         return Msg.success();
     }
 

@@ -51,7 +51,7 @@ public class ShoppingCarController {
 
     @ResponseBody
     @DeleteMapping("/shoppingCar/{cId}")
-    public Msg deleteCarCom(@PathVariable("cId") Integer cId,HttpSession session){
+    public Msg deleteCarCom(@PathVariable("cId")Integer cId,HttpSession session){
         User user = (User) session.getAttribute("user");
         ShoppingCar shoppingCar = shoppingCarService.getCar(user.getuId());
         CarCom carCom = new CarCom();
