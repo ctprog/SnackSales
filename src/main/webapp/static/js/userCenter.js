@@ -16,6 +16,7 @@ $(function (){
 
 //获取用户信息回显
 function user_message(){
+    $("#uHead").empty();
     $.ajax({
         url:path+'/user',
         type:'get',

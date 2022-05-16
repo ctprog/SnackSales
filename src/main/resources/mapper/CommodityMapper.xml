@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snack.dao.CommodityMapper">
-  <resultMap id="BaseResultMap" type="com.snack.bean.Commodity">
+<mapper namespace="com.snack.business.dao.CommodityMapper">
+  <resultMap id="BaseResultMap" type="com.snack.business.bean.Commodity">
     <id column="c_id" jdbcType="INTEGER" property="cId" />
     <result column="c_name" jdbcType="VARCHAR" property="cName" />
     <result column="c_price" jdbcType="DECIMAL" property="cPrice" />
     <result column="t_id" jdbcType="INTEGER" property="tId" />
-    <association property="comType" javaType="com.snack.bean.CommodityType">
+    <association property="comType" javaType="com.snack.business.bean.CommodityType">
       <id column="t_id" property="tId"/>
       <result column="t_name" property="tName"/>
     </association>
-    <collection property="imgs" ofType="com.snack.bean.Img">
+    <collection property="imgs" ofType="com.snack.business.bean.Img">
       <result column="c_id" property="cId"/>
       <result column="i_name" property="iName"/>
     </collection>
@@ -82,7 +82,7 @@
     from tb_commodity c left join tb_c_type t on c.t_id=t.t_id left join tb_img i on c.c_id = i.c_id
     where c.c_name like "%"#{cName,jdbcType=VARCHAR}"%"
   </select>
-  <select id="selectByExample" parameterType="com.snack.bean.CommodityExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.snack.business.bean.CommodityExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -106,19 +106,19 @@
     delete from tb_commodity
     where c_id = #{cId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.snack.bean.CommodityExample">
+  <delete id="deleteByExample" parameterType="com.snack.business.bean.CommodityExample">
     delete from tb_commodity
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.snack.bean.Commodity" useGeneratedKeys="true" keyProperty="cId" keyColumn="c_id">
+  <insert id="insert" parameterType="com.snack.business.bean.Commodity" useGeneratedKeys="true" keyProperty="cId" keyColumn="c_id">
     insert into tb_commodity (c_name, c_price,
       t_id)
     values (#{cName,jdbcType=VARCHAR}, #{cPrice,jdbcType=DECIMAL},
       #{tId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.snack.bean.Commodity">
+  <insert id="insertSelective" parameterType="com.snack.business.bean.Commodity">
     insert into tb_commodity
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cId != null">
@@ -149,7 +149,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.snack.bean.CommodityExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.snack.business.bean.CommodityExample" resultType="java.lang.Long">
     select count(*) from tb_commodity c
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -185,7 +185,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snack.bean.Commodity">
+  <update id="updateByPrimaryKeySelective" parameterType="com.snack.business.bean.Commodity">
     update tb_commodity
     <set>
       <if test="cName != null">
@@ -200,7 +200,7 @@
     </set>
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snack.bean.Commodity">
+  <update id="updateByPrimaryKey" parameterType="com.snack.business.bean.Commodity">
     update tb_commodity
     set c_name = #{cName,jdbcType=VARCHAR},
       c_price = #{cPrice,jdbcType=DECIMAL},

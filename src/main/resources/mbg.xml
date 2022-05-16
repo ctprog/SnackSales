@@ -19,7 +19,7 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.snack.bean" targetProject=".\src\main\java">
+        <javaModelGenerator targetPackage="com.snack.business.bean" targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
@@ -28,7 +28,7 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.snack.dao"  targetProject=".\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.snack.business.dao" targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
@@ -41,12 +41,11 @@
         <table tableName="tb_c_img" domainObjectName="CommodityImg"></table>
         <table tableName="tb_shop_car" domainObjectName="ShoppingCar"></table>
         <table tableName="tb_admin" domainObjectName="Admin"></table>
-        <table tableName="tb_img" domainObjectName="Img"></table>-->
-<!--        <table tableName="tb_s_c" domainObjectName="CarCom"></table>-->
+        <table tableName="tb_img" domainObjectName="Img"></table>
+        <table tableName="tb_s_c" domainObjectName="CarCom"></table>
 
-
-        <table tableName="tb_order" domainObjectName="Order"></table>
-
+        <table tableName="tb_order" domainObjectName="Order"></table>-->
+        <table tableName="tb_college" domainObjectName="College"></table>
 
     </context>
 </generatorConfiguration>

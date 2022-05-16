@@ -26,6 +26,9 @@ $("#left-nav li").click(function () {
         case ("com"):
             left_com()
             break;
+        case ("user"):
+            left_user()
+            break;
     }
 });
 $(function (){
@@ -568,3 +571,100 @@ function build_com_part(result) {
     $("<p></p>").append($("<a class='btn btn-danger btn-lg' role='button'></a>").text('￥'+com.cPrice+'元')).appendTo("#com_part");
 };
 // ============================================
+
+function left_user(){
+    allUser();
+}
+//获取全部用户信息
+function allUser(){
+    $.ajax({
+        url:path+"/admin/users",
+        type:"GET",
+        success:function (result){
+            buildUsers(result);
+        }
+    })
+}
+function buildUsers(result) {
+    $("#user1 tbody").empty();
+    let users = result.extend.users;
+    $.each(users,function (index,item){
+        let uId = $("<td></td>").append(item.uId);
+        let uName = $("<td></td>").append($("<input type='text' class='form-control'/>").attr("value",item.uName))
+        let uGender = $("<td></td>").append($("<input type='text' class='form-control'/>").attr("value",item.uGender))
+        let uPhone = $("<td></td>").append($("<input type='text' class='form-control'/>").attr("value",item.uPhone))
+        let uPassword = $("<td></td>").append($("<input type='text' class='form-control'/>").attr("value",item.uPassword))
+        let update_btn = $("<button type='button' class='btn btn-info update_user_btn'>修改</button>");
+        let delete_btn = $("<button type='button' class='btn btn-danger delete_user_btn'>删除</button>");
+        let use = $("<td></td>").append($("<div class='btn-group' role='group'></div>").append(update_btn).append(delete_btn));
+        $("<tr></tr>").append(uId).append(uName).append(uGender).append(uPhone).append(uPassword).append(use).appendTo("#user1 tbody");
+    })
+}
+//用户修改
+$(document).on("click",".update_user_btn",function (){
+    let uName = $(this).parents("tr").find("td:eq(1)").children("input").val();
+    let uGender = $(this).parents("tr").find("td:eq(2)").children("input").val();
+    let uPhone = $(this).parents("tr").find("td:eq(3)").children("input").val();
+    let uPassword = $(this).parents("tr").find("td:eq(4)").children("input").val();
+    let uId = $(this).parents("tr").find("td:eq(0)").text();
+    if (validate_update_user(uName,uGender,uPhone,uPassword)){
+        $.ajax({
+            url:path+"/admin/user",
+            type:"PUT",
+            data:{
+                'uId':uId,
+                'uName':uName,
+                'uGender':uGender,
+                'uPhone':uPhone,
+                'uPassword':uPassword
+            },
+            success:function (result){
+                if (result.code==100){
+                    alert("修改成功");
+                    allUser();
+                }
+            }
+        })
+    }
+})
+//修改用户信息校验
+function validate_update_user(uName,uGender,uPhone,uPassword){
+    let reguName = /(^[a-zA-Z]{1}[a-zA-Z\s]{0,20}[a-zA-Z]{1}$)|(^(?:[\u4e00-\u9fa5·]{2,16})$)/
+    if (!reguName.test(uName)){
+        alert("用户昵称格式不正确！");
+        return false;
+    }
+
+    if (!(uGender=='男'||uGender=='女')){
+        alert("性别格式不正确！");
+        return false;
+    }
+
+    let reguPhone = /^(?:(?:\+|00)86)?1\d{10}$/
+    if (!reguPhone.test(uPhone)){
+        alert("电话号码格式不正确！");
+        return false;
+    }
+
+    let reguPassword = /^[a-zA-Z0-9]{6,12}$/
+    if (!reguPassword.test(uPassword)){
+        show_validate_msg("#reg-uPassword","error","密码格式不正确！");
+        return false;
+    }
+
+    return true;
+}
+//用户删除
+$(document).on("click",".delete_user_btn",function (){
+    let uId = $(this).parents("tr").find("td:eq(0)").text();
+    if (confirm("是否确认删除该用户？请谨慎操作！")){
+        $.ajax({
+            url:path+"/admin/delUser/"+uId,
+            type:"delete",
+            success:function (result){
+                alert("删除成功！");
+                allUser();
+            }
+        })
+    }
+})

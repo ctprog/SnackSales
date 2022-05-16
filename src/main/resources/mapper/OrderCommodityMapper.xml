@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snack.dao.OrderCommodityMapper">
-  <resultMap id="BaseResultMap" type="com.snack.bean.OrderCommodity">
+<mapper namespace="com.snack.dao.business.OrderCommodityMapper">
+  <resultMap id="BaseResultMap" type="com.snack.business.bean.OrderCommodity">
     <result column="o_id" jdbcType="VARCHAR" property="oId" />
     <result column="c_id" jdbcType="INTEGER" property="cId" />
     <result column="c_name" jdbcType="VARCHAR" property="cName" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     o_id, c_id, c_name, c_price, c_number
   </sql>
-  <select id="selectByExample" parameterType="com.snack.bean.OrderCommodityExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.snack.business.bean.OrderCommodityExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -83,19 +83,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.snack.bean.OrderCommodityExample">
+  <delete id="deleteByExample" parameterType="com.snack.business.bean.OrderCommodityExample">
     delete from tb_c_o
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.snack.bean.OrderCommodity">
+  <insert id="insert" parameterType="com.snack.business.bean.OrderCommodity">
     insert into tb_c_o (o_id, c_id, c_name, 
       c_price, c_number)
     values (#{oId,jdbcType=VARCHAR}, #{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, 
       #{cPrice,jdbcType=DECIMAL}, #{cNumber,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.snack.bean.OrderCommodity">
+  <insert id="insertSelective" parameterType="com.snack.business.bean.OrderCommodity">
     insert into tb_c_o
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="oId != null">
@@ -132,7 +132,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.snack.bean.OrderCommodityExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.snack.business.bean.OrderCommodityExample" resultType="java.lang.Long">
     select count(*) from tb_c_o
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

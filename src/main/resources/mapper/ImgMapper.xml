@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snack.dao.ImgMapper">
-  <resultMap id="BaseResultMap" type="com.snack.bean.Img">
+<mapper namespace="com.snack.business.dao.ImgMapper">
+  <resultMap id="BaseResultMap" type="com.snack.business.bean.Img">
     <result column="c_id" jdbcType="INTEGER" property="cId" />
     <result column="i_name" jdbcType="VARCHAR" property="iName" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List">
     c_id, i_name
   </sql>
-  <select id="selectByExample" parameterType="com.snack.bean.ImgExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.snack.business.bean.ImgExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -80,7 +80,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.snack.bean.ImgExample">
+  <delete id="deleteByExample" parameterType="com.snack.business.bean.ImgExample">
     delete from tb_img
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -92,7 +92,7 @@
       (#{img.cId,jdbcType=INTEGER}, #{img.iName,jdbcType=VARCHAR})
     </foreach>
   </insert>
-  <insert id="insertSelective" parameterType="com.snack.bean.Img">
+  <insert id="insertSelective" parameterType="com.snack.business.bean.Img">
     insert into tb_img
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cId != null">
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.snack.bean.ImgExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.snack.business.bean.ImgExample" resultType="java.lang.Long">
     select count(*) from tb_img
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

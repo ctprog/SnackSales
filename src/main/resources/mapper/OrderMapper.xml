@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snack.dao.OrderMapper">
-  <resultMap id="BaseResultMap" type="com.snack.bean.Order">
+<mapper namespace="com.snack.dao.business.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.snack.business.bean.Order">
     <id column="o_id" jdbcType="VARCHAR" property="oId" />
     <result column="o_start_time" jdbcType="TIMESTAMP" property="oStartTime" />
     <result column="o_end_time" jdbcType="TIMESTAMP" property="oEndTime" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     o_id, o_start_time, o_end_time, u_id, o_state, m_id
   </sql>
-  <select id="selectByExample" parameterType="com.snack.bean.OrderExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.snack.business.bean.OrderExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -94,19 +94,19 @@
     delete from tb_order
     where o_id = #{oId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.snack.bean.OrderExample">
+  <delete id="deleteByExample" parameterType="com.snack.business.bean.OrderExample">
     delete from tb_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.snack.bean.Order">
+  <insert id="insert" parameterType="com.snack.business.bean.Order">
     insert into tb_order (o_id, o_start_time, o_end_time, 
       u_id, o_state, m_id)
     values (#{oId,jdbcType=VARCHAR}, #{oStartTime,jdbcType=TIMESTAMP}, #{oEndTime,jdbcType=TIMESTAMP}, 
       #{uId,jdbcType=VARCHAR}, #{oState,jdbcType=VARCHAR}, #{mId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.snack.bean.Order">
+  <insert id="insertSelective" parameterType="com.snack.business.bean.Order">
     insert into tb_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="oId != null">
@@ -149,7 +149,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.snack.bean.OrderExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.snack.business.bean.OrderExample" resultType="java.lang.Long">
     select count(*) from tb_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -193,7 +193,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snack.bean.Order">
+  <update id="updateByPrimaryKeySelective" parameterType="com.snack.business.bean.Order">
     update tb_order
     <set>
       <if test="oStartTime != null">
@@ -214,7 +214,7 @@
     </set>
     where o_id = #{oId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snack.bean.Order">
+  <update id="updateByPrimaryKey" parameterType="com.snack.business.bean.Order">
     update tb_order
     set o_start_time = #{oStartTime,jdbcType=TIMESTAMP},
       o_end_time = #{oEndTime,jdbcType=TIMESTAMP},

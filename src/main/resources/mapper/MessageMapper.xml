@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snack.dao.MessageMapper">
-  <resultMap id="BaseResultMap" type="com.snack.bean.Message">
+<mapper namespace="com.snack.business.dao.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.snack.business.bean.Message">
     <id column="m_id" jdbcType="INTEGER" property="mId" />
     <result column="m_name" jdbcType="VARCHAR" property="mName" />
     <result column="m_address" jdbcType="VARCHAR" property="mAddress" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     m_id, m_name, m_address, m_phone, u_id
   </sql>
-  <select id="selectByExample" parameterType="com.snack.bean.MessageExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.snack.business.bean.MessageExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,19 +93,19 @@
     delete from tb_message
     where m_id = #{mId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.snack.bean.MessageExample">
+  <delete id="deleteByExample" parameterType="com.snack.business.bean.MessageExample">
     delete from tb_message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.snack.bean.Message">
+  <insert id="insert" parameterType="com.snack.business.bean.Message">
     insert into tb_message (m_id, m_name, m_address, 
       m_phone, u_id)
     values (#{mId,jdbcType=INTEGER}, #{mName,jdbcType=VARCHAR}, #{mAddress,jdbcType=VARCHAR}, 
       #{mPhone,jdbcType=VARCHAR}, #{uId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.snack.bean.Message">
+  <insert id="insertSelective" parameterType="com.snack.business.bean.Message">
     insert into tb_message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="mId != null">
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.snack.bean.MessageExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.snack.business.bean.MessageExample" resultType="java.lang.Long">
     select count(*) from tb_message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snack.bean.Message">
+  <update id="updateByPrimaryKeySelective" parameterType="com.snack.business.bean.Message">
     update tb_message
     <set>
       <if test="mName != null">
@@ -200,7 +200,7 @@
     </set>
     where m_id = #{mId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snack.bean.Message">
+  <update id="updateByPrimaryKey" parameterType="com.snack.business.bean.Message">
     update tb_message
     set m_name = #{mName,jdbcType=VARCHAR},
       m_address = #{mAddress,jdbcType=VARCHAR},

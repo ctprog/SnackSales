@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snack.dao.CommodityTypeMapper">
-  <resultMap id="BaseResultMap" type="com.snack.bean.CommodityType">
+<mapper namespace="com.snack.business.dao.CommodityTypeMapper">
+  <resultMap id="BaseResultMap" type="com.snack.business.bean.CommodityType">
     <id column="t_id" jdbcType="INTEGER" property="tId" />
     <result column="t_name" jdbcType="VARCHAR" property="tName" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List">
     t_id, t_name
   </sql>
-  <select id="selectByExample" parameterType="com.snack.bean.CommodityTypeExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.snack.business.bean.CommodityTypeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -90,17 +90,17 @@
     delete from tb_c_type
     where t_id = #{tId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.snack.bean.CommodityTypeExample">
+  <delete id="deleteByExample" parameterType="com.snack.business.bean.CommodityTypeExample">
     delete from tb_c_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.snack.bean.CommodityType">
+  <insert id="insert" parameterType="com.snack.business.bean.CommodityType">
     insert into tb_c_type (t_id, t_name)
     values (#{tId,jdbcType=INTEGER}, #{tName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.snack.bean.CommodityType">
+  <insert id="insertSelective" parameterType="com.snack.business.bean.CommodityType">
     insert into tb_c_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tId != null">
@@ -119,7 +119,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.snack.bean.CommodityTypeExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.snack.business.bean.CommodityTypeExample" resultType="java.lang.Long">
     select count(*) from tb_c_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -147,7 +147,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snack.bean.CommodityType">
+  <update id="updateByPrimaryKeySelective" parameterType="com.snack.business.bean.CommodityType">
     update tb_c_type
     <set>
       <if test="tName != null">
@@ -156,7 +156,7 @@
     </set>
     where t_id = #{tId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snack.bean.CommodityType">
+  <update id="updateByPrimaryKey" parameterType="com.snack.business.bean.CommodityType">
     update tb_c_type
     set t_name = #{tName,jdbcType=VARCHAR}
     where t_id = #{tId,jdbcType=INTEGER}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snack.dao.ShoppingCarMapper">
-  <resultMap id="BaseResultMap" type="com.snack.bean.ShoppingCar">
+<mapper namespace="com.snack.dao.business.ShoppingCarMapper">
+  <resultMap id="BaseResultMap" type="com.snack.business.bean.ShoppingCar">
     <id column="s_id" jdbcType="INTEGER" property="sId" />
     <result column="u_id" jdbcType="VARCHAR" property="uId" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List">
     s_id, u_id
   </sql>
-  <select id="selectByExample" parameterType="com.snack.bean.ShoppingCarExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.snack.business.bean.ShoppingCarExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -90,17 +90,17 @@
     delete from tb_shop_car
     where s_id = #{sId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.snack.bean.ShoppingCarExample">
+  <delete id="deleteByExample" parameterType="com.snack.business.bean.ShoppingCarExample">
     delete from tb_shop_car
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.snack.bean.ShoppingCar">
+  <insert id="insert" parameterType="com.snack.business.bean.ShoppingCar">
     insert into tb_shop_car (s_id, u_id)
     values (#{sId,jdbcType=INTEGER}, #{uId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.snack.bean.ShoppingCar">
+  <insert id="insertSelective" parameterType="com.snack.business.bean.ShoppingCar">
     insert into tb_shop_car
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sId != null">
@@ -119,7 +119,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.snack.bean.ShoppingCarExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.snack.business.bean.ShoppingCarExample" resultType="java.lang.Long">
     select count(*) from tb_shop_car
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -147,7 +147,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snack.bean.ShoppingCar">
+  <update id="updateByPrimaryKeySelective" parameterType="com.snack.business.bean.ShoppingCar">
     update tb_shop_car
     <set>
       <if test="uId != null">
@@ -156,7 +156,7 @@
     </set>
     where s_id = #{sId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snack.bean.ShoppingCar">
+  <update id="updateByPrimaryKey" parameterType="com.snack.business.bean.ShoppingCar">
     update tb_shop_car
     set u_id = #{uId,jdbcType=VARCHAR}
     where s_id = #{sId,jdbcType=INTEGER}

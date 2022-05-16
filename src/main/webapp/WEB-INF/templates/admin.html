@@ -20,11 +20,11 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <spean class="navbar-brand">咕噜零食铺</spean>
+            <spean class="navbar-brand">体育用品商城</spean>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a>admin</a></li>
+                <li><a th:href="@{/admin/quit}">退出</a></li>
             </ul>
         </div>
     </div>
@@ -38,6 +38,7 @@
                 <li class="active" id="order"><a href="javascript:;">订单管理</a></li>
                 <li class="" id="type"><a href="javascript:;">分类管理</a></li>
                 <li class="" id="com"><a href="javascript:;">商品管理</a></li>
+                <li class="" id="user"><a href="javascript:;">用户管理</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -344,6 +345,27 @@
                 </div>
             </div>
             <!-- ======================================================================================= -->
+            <!-- 用户管理 -->
+            <div id="user1" class="list hidden">
+                <h2 class="sub-header">用户信息：</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>用户账号</th>
+                            <th>用户昵称</th>
+                            <th>用户性别</th>
+                            <th>用户电话</th>
+                            <th>用户密码</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

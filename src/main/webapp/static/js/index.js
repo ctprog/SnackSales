@@ -152,7 +152,7 @@ function build_com_part(result) {
         }
         one.appendTo("#com_images");
     })
-    $("<h2>咕噜零食铺</h2>").appendTo("#com_part");
+    $("<h2>体育用品商城</h2>").appendTo("#com_part");
     $("<p></p>").text(com.cName).appendTo("#com_part");
     $("<p></p>").append($("<a class='btn btn-danger btn-lg' role='button'></a>").text('￥'+com.cPrice+'元')).appendTo("#com_part");
 };

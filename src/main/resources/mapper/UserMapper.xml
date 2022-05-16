@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snack.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="com.snack.bean.User">
+<mapper namespace="com.snack.business.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.snack.business.bean.User">
     <id column="u_id" jdbcType="VARCHAR" property="uId" />
     <result column="u_name" jdbcType="VARCHAR" property="uName" />
     <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
@@ -9,6 +9,7 @@
     <result column="u_phone" jdbcType="VARCHAR" property="uPhone" />
     <result column="u_head" jdbcType="VARCHAR" property="uHead" />
     <result column="m_id" jdbcType="INTEGER" property="mId" />
+    <result column="u_isdel" jdbcType="INTEGER" property="isDelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,9 +70,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    u_id, u_name, u_password, u_gender, u_phone, u_head, m_id
+    u_id, u_name, u_password, u_gender, u_phone, u_head, m_id, u_isdel
   </sql>
-  <select id="selectByExample" parameterType="com.snack.bean.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.snack.business.bean.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -95,13 +96,13 @@
     delete from tb_user
     where u_id = #{uId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.snack.bean.UserExample">
+  <delete id="deleteByExample" parameterType="com.snack.business.bean.UserExample">
     delete from tb_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.snack.bean.User">
+  <insert id="insert" parameterType="com.snack.business.bean.User">
     insert into tb_user (u_id, u_name, u_password, 
       u_gender, u_phone, u_head, 
       m_id)
@@ -109,7 +110,7 @@
       #{uGender,jdbcType=VARCHAR}, #{uPhone,jdbcType=VARCHAR}, #{uHead,jdbcType=VARCHAR}, 
       #{mId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.snack.bean.User">
+  <insert id="insertSelective" parameterType="com.snack.business.bean.User">
     insert into tb_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="uId != null">
@@ -158,7 +159,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.snack.bean.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.snack.business.bean.UserExample" resultType="java.lang.Long">
     select count(*) from tb_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -201,12 +202,12 @@
       u_gender = #{record.uGender,jdbcType=VARCHAR},
       u_phone = #{record.uPhone,jdbcType=VARCHAR},
       u_head = #{record.uHead,jdbcType=VARCHAR},
-      m_id = #{record.mId,jdbcType=INTEGER}
+      m_id = #{record.mId,jdbcType=INTEGER},
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snack.bean.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.snack.business.bean.User">
     update tb_user
     <set>
       <if test="uName != null">
@@ -230,14 +231,15 @@
     </set>
     where u_id = #{uId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snack.bean.User">
+  <update id="updateByPrimaryKey" parameterType="com.snack.business.bean.User">
     update tb_user
     set u_name = #{uName,jdbcType=VARCHAR},
       u_password = #{uPassword,jdbcType=VARCHAR},
       u_gender = #{uGender,jdbcType=VARCHAR},
       u_phone = #{uPhone,jdbcType=VARCHAR},
       u_head = #{uHead,jdbcType=VARCHAR},
-      m_id = #{mId,jdbcType=INTEGER}
+      m_id = #{mId,jdbcType=INTEGER},
+      u_isdel = #{isDelete,jdbcType=INTEGER}
     where u_id = #{uId,jdbcType=VARCHAR}
   </update>
 </mapper>

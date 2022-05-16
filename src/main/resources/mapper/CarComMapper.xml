@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snack.dao.CarComMapper">
-  <resultMap id="BaseResultMap" type="com.snack.bean.CarCom">
+<mapper namespace="com.snack.business.dao.CarComMapper">
+  <resultMap id="BaseResultMap" type="com.snack.business.bean.CarCom">
     <result column="c_id" jdbcType="INTEGER" property="cId" />
     <result column="s_id" jdbcType="INTEGER" property="sId" />
     <result column="c_count" jdbcType="INTEGER" property="cCount" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     c_id, s_id, c_count
   </sql>
-  <select id="selectByExample" parameterType="com.snack.bean.CarComExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.snack.business.bean.CarComExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -81,19 +81,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.snack.bean.CarComExample">
+  <delete id="deleteByExample" parameterType="com.snack.business.bean.CarComExample">
     delete from tb_s_c
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.snack.bean.CarCom">
+  <insert id="insert" parameterType="com.snack.business.bean.CarCom">
     insert into tb_s_c (c_id, s_id, c_count
       )
     values (#{cId,jdbcType=INTEGER}, #{sId,jdbcType=INTEGER}, #{cCount,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.snack.bean.CarCom">
+  <insert id="insertSelective" parameterType="com.snack.business.bean.CarCom">
     insert into tb_s_c
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cId != null">
@@ -118,7 +118,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.snack.bean.CarComExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.snack.business.bean.CarComExample" resultType="java.lang.Long">
     select count(*) from tb_s_c
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
